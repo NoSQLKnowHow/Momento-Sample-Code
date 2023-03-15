@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	cacheName = "mycache"
+	cacheName = "mycache" //this must be an existing cache in your account.
 	topicName = "test-topic"
 )
 
@@ -20,7 +20,7 @@ func main() {
 	topicClient := getTopicClient()
 	ctx := context.Background()
 
-	// Instantiate subscriber
+	// Instantiate subscriber to an existing cache.
 	sub, err := topicClient.Subscribe(ctx, &momento.TopicSubscribeRequest{
 		CacheName: cacheName,
 		TopicName: topicName,
@@ -29,7 +29,7 @@ func main() {
 		panic(err)
 	}
 
-	// Receive and print messages in a goroutine
+	// Receive and print messages in a goroutine in this async function call
 	go func() { pollForMessages(ctx, sub) }()
 	time.Sleep(time.Second)
 
