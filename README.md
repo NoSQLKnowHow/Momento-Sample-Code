@@ -1,5 +1,5 @@
-# Momento-Go-Samples
+# Momento code examples
 
 Examples of using [Momento Topics](https://docs.momentohq.com/develop/api-reference/topics).
 
-[Code example](./topics-example.go).
+[Go code example](./topics-example.go).
