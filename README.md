@@ -2,4 +2,4 @@
 
 ### Examples of using [Momento Topics](https://docs.momentohq.com/develop/api-reference/topics).
 
-[Go code example](./go/topics/topics-example.go).
+[Go code example](./go/topics/main.go).
