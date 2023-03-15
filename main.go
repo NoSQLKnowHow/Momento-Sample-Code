@@ -11,16 +11,14 @@ import (
 )
 
 const (
-	cacheName = "test-cache"
+	cacheName = "mycache"
 	topicName = "test-topic"
 )
 
 func main() {
 	// Initialization
 	topicClient := getTopicClient()
-	cacheClient := getCacheClient()
 	ctx := context.Background()
-	setupCache(cacheClient, ctx)
 
 	// Instantiate subscriber
 	sub, err := topicClient.Subscribe(ctx, &momento.TopicSubscribeRequest{
@@ -62,31 +60,6 @@ func getTopicClient() momento.TopicClient {
 		panic(err)
 	}
 	return topicClient
-}
-
-func getCacheClient() momento.CacheClient {
-	credProvider, err := auth.NewEnvMomentoTokenProvider("MOMENTO_AUTH_TOKEN")
-	if err != nil {
-		panic(err)
-	}
-	cacheClient, err := momento.NewCacheClient(
-		config.LaptopLatest(),
-		credProvider,
-		time.Second*60,
-	)
-	if err != nil {
-		panic(err)
-	}
-	return cacheClient
-}
-
-func setupCache(client momento.CacheClient, ctx context.Context) {
-	_, err := client.CreateCache(ctx, &momento.CreateCacheRequest{
-		CacheName: "test-cache",
-	})
-	if err != nil {
-		panic(err)
-	}
 }
 
 func publishMessages(client momento.TopicClient, ctx context.Context) {
