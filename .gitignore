@@ -13,3 +13,10 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# You need a .env file for the node.js examples, but I am not including one in the repo as it contains a momento token and they are private.
+.env
+
+node_modules
+package*
+.gitignore
